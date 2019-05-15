@@ -205,7 +205,7 @@ class RiemannianAdam(OptimMixin, torch.optim.Adam):
                     continue
                 manifold = p.manifold
                 exp_avg = state["exp_avg"]
-		new_p = manifold.projx(p)
+                new_p = manifold.projx(p)
                 if p.stride() != new_p.stride():
                     p.copy_(new_p)
                 else:

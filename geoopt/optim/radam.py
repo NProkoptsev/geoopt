@@ -189,10 +189,10 @@ class RiemannianAdam(OptimMixin, torch.optim.Adam):
         new_point, exp_avg_new = manifold.retr_transp(
             point, exp_avg, u=direction, t=-step_size
         )
-	if point.stride() != new_point.stride():
+        if point.stride() != new_point.stride():
             point.copy_(new_point)
-	else:
-	    point.set_(new_point)
+        else:
+            point.set_(new_point)
         exp_avg.set_(exp_avg_new)
 
     def stabilize_group(self, group):
@@ -208,8 +208,8 @@ class RiemannianAdam(OptimMixin, torch.optim.Adam):
 		new_p = manifold.projx(p)
                 if p.stride() != new_p.stride():
                     p.copy_(new_p)
-	        else:
-	            p.set_(new_p)
+                else:
+                    p.set_(new_p)
                 exp_avg.set_(manifold.proju(p, exp_avg))
 
     def _sanitize_group(self, group):

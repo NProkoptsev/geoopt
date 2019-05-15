@@ -170,14 +170,14 @@ class RiemannianSGD(OptimMixin, torch.optim.Optimizer):
             momentum_buffer.set_(new_momentum_buffer)
             if point.stride() != new_point.stride():
                 point.copy_(new_point)
-	    else:
-	        point.set_(new_point)
+            else:
+                point.set_(new_point)
         else:
             new_point = manifold.retr(point, grad, -lr)
             if point.stride() != new_point.stride():
                 point.copy_(new_point)
-	    else:
-	        point.set_(new_point)
+            else:
+                point.set_(new_point)
 
     def stabilize_group(self, group):
         with torch.no_grad():
@@ -189,8 +189,8 @@ class RiemannianSGD(OptimMixin, torch.optim.Optimizer):
                 new_p = manifold.projx(p)
                 if p.stride() != new_p.stride():
                     p.copy_(new_p)
-	        else:
-	            p.set_(new_p)
+                else:
+                    p.set_(new_p)
                 if momentum > 0:
                     param_state = self.state[p]
                     if not param_state:  # due to None grads
